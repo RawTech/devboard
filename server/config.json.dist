@@ -1,0 +1,25 @@
+{
+  "listenPort": 80,
+  "env": "dev",
+
+  "jenkins": {
+    "host": "ci.host.com",
+    "port": 8080
+  },
+
+  "views": {
+    "example": {
+      "name": "Example view",
+      "columns": 3,
+      "jobs": [
+        "live-frontend",
+        "live-frontend-deploy",
+        "training-frontend-deploy",
+
+        "live-api",
+        "live-api-deploy",
+        "training-api-deploy"
+      ]
+    }
+  }
+}

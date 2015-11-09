@@ -1,0 +1,14 @@
+{
+  "name": "devboard",
+  "version": "1.0.0",
+  "description": "Dashboard for developers",
+  "main": "server.js",
+  "author": "RawTech",
+  "dependencies": {
+    "express": "~4.13.3",
+    "mongoose": "~3.6.2",
+    "morgan": "~1.2.2",
+    "body-parser": "~1.5.2",
+    "method-override": "~2.1.2"
+  }
+}
