@@ -18,12 +18,9 @@
 </head>
 <body ng-controller="boardController as main">
 <div>
-    <h3 class="white-text center">{{main.view.name}}</h3>
-</div>
-<div>
     <div ng-repeat="job in main.jobs" class="job-wrapper {{job.status}}">
         <div class="progress full-collection" ng-class="{complete: job.status!='building'}">
-            <div class="determinate {{ job.colour }} darken-3" style="width:{{job.progress*100}}%"></div>
+            <div class="determinate {{ job.colour }} darken-4" style="width:{{job.progress*100}}%"></div>
         </div>
 
         <div class="job-info">

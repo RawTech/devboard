@@ -3,10 +3,10 @@ body {
 }
 
 .job-wrapper {
-    margin: 5px;
+    margin: 8px;
     display: inline-block;
     background-color: #212121;
-    height: 100px;
+    height: 110px;
     width: 32%;
     border-radius: 10px;
 }
@@ -17,7 +17,7 @@ body {
 
 .job-wrapper .progress {
     background-color: transparent;
-    height: 100px;
+    height: 110px;
     width: 32%;
     position: absolute;
     margin: 0;
@@ -29,7 +29,7 @@ body {
 }
 
 .job-info .name {
-    font-size: 2vw;
+    font-size: 2.6vw;
     float: left;
     position: absolute;
     overflow: hidden;
@@ -39,7 +39,7 @@ body {
 }
 
 .job-info .meta {
-    margin: 55px 10px 0 0;
+    margin: 75px 10px 0 0;
     text-align: right;
     font-size: 1.2vw;
     position: absolute;

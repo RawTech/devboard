@@ -11,8 +11,6 @@ var moment = require('moment');
 
 var config = JSON.parse(fs.readFileSync(__dirname + '/config.json'));
 
-app.set('trust proxy', 1);
-
 app.use(express.static(__dirname + '/public'));
 app.use(morgan(config.env));
 
@@ -53,15 +51,15 @@ function getJobs() {
                     progress: 1
                 };
 
-                if (element.name.includes('cron')) {
+                if (element.name.indexOf('cron') > -1) {
                     job.type = 'cron';
                 }
 
-                if (element.name.startsWith('project')) {
+                if (element.name.indexOf('project') > -1) {
                     job.platform = 'qa';
-                } else if (element.name.startsWith('live-')) {
+                } else if (element.name.indexOf('live-') > -1) {
                     job.platform = 'prod';
-                } else if (element.name.startsWith('training-')) {
+                } else if (element.name.indexOf('training-') > -1) {
                     job.platform = 'training';
                 }
 
@@ -114,7 +112,8 @@ function getJobs() {
                 job.prettyName = job.name
                     .replace(/live-/g, '')
                     .replace(/project/g, '')
-                    .replace(/training-/g, '')
+                    .replace(/training-/g, 'train ')
+                    .replace(/lightweight/g, 'lw')
                     .replace(/-/g, ' ')
                     .replace(/cron/g, '')
                     .replace(/calculate/g, 'calc')
