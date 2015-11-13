@@ -20,7 +20,7 @@
 <div>
     <div ng-repeat="job in main.jobs" class="job-wrapper {{job.status}}">
         <div class="progress full-collection" ng-class="{complete: job.status!='building'}">
-            <div class="determinate {{ job.colour }} darken-4" style="width:{{job.progress*100}}%"></div>
+            <div class="determinate {{ job.colour }}" ng-class="{'darken-4': job.status!='building', 'darken-1': job.status=='building'}" style="width:{{job.progress*100}}%"></div>
         </div>
 
         <div class="job-info">

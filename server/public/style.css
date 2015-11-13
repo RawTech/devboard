@@ -6,7 +6,7 @@ body {
     margin: 8px;
     display: inline-block;
     background-color: #212121;
-    height: 110px;
+    height: 130px;
     width: 32%;
     border-radius: 10px;
 }
@@ -17,7 +17,7 @@ body {
 
 .job-wrapper .progress {
     background-color: transparent;
-    height: 110px;
+    height: 130px;
     width: 32%;
     position: absolute;
     margin: 0;
@@ -25,7 +25,7 @@ body {
 }
 
 .job-info {
-    padding: 0 10px;
+    padding: 10px 10px 0 10px;
 }
 
 .job-info .name {
@@ -48,8 +48,8 @@ body {
 
 .job-wrapper .progress:not(.complete) .determinate {
     background-size: 30px 30px;
-    background-image: linear-gradient(135deg, rgba(255, 255, 255, .15) 25%, transparent 25%,
-    transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%,
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, .35) 25%, transparent 25%,
+    transparent 50%, rgba(255, 255, 255, .35) 50%, rgba(255, 255, 255, .35) 75%,
     transparent 75%, transparent);
 
     animation: animate-stripes 3s linear infinite;
