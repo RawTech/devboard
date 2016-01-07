@@ -17,25 +17,21 @@
 
 </head>
 <body ng-controller="boardController as main">
-<div>
-    <div ng-repeat="job in main.jobs" class="job-wrapper {{job.status}}">
-        <div class="progress full-collection" ng-class="{complete: job.status!='building'}">
-            <div class="determinate {{ job.colour }}" ng-class="{'darken-4': job.status!='building', 'darken-1': job.status=='building'}" style="width:{{job.progress*100}}%"></div>
-        </div>
-
+<div class="row">
+    <div
+    ng-repeat="job in main.jobs" class="job-container {{job.status}} col s{{job.width}} {{job.colour}}" 
+    ng-style="job.status == 'building' && {'background': 'linear-gradient(to right, rgb(76, 175, 80) {{job.progress*100}}%, rgba(255,0,0,0) 0%)'}">
         <div class="job-info">
-            <span class="white-text name">
-                {{ job.prettyName }}
-            </span>
+            <span class="job-name">{{ job.displayName }}</span>
+            
             <span class="meta white-text" ng-show="job.status == 'building'">
-                Started {{ job.start }} ETA {{ job.eta }}
+                Started {{ job.start }}<br/>ETA {{ job.eta }}
             </span>
             <span class="meta white-text" ng-show="job.status != 'building'">
-                {{ job.start }} in {{ job.duration }}
+                {{ job.start }}<br/>took {{ job.duration }}
             </span>
+
         </div>
-
-
     </div>
 </div>
 

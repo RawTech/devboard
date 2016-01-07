@@ -51,18 +51,6 @@ function getJobs() {
                     progress: 1
                 };
 
-                if (element.name.indexOf('cron') > -1) {
-                    job.type = 'cron';
-                }
-
-                if (element.name.indexOf('project') > -1) {
-                    job.platform = 'qa';
-                } else if (element.name.indexOf('live-') > -1) {
-                    job.platform = 'prod';
-                } else if (element.name.indexOf('training-') > -1) {
-                    job.platform = 'training';
-                }
-
                 var lastBuild = element.lastBuild;
                 var lastStable = element.lastStableBuild;
                 var lastFailed = element.lastFailedBuild;
@@ -76,7 +64,7 @@ function getJobs() {
                             job.status = 'success';
                             break;
                         case 'ABORTED':
-                            job.status = 'failed';
+                            job.status = 'aborted';
                             break;
                         default:
                             job.status = 'building';
@@ -93,12 +81,11 @@ function getJobs() {
                             }
 
                             if (lastDuration) {
-                                job.eta = moment(0).to(moment(lastDuration));
-
                                 job.progress = moment().diff(moment.unix(lastBuild.timestamp/1000)) / lastDuration;
+                                job.eta = moment(0).to(moment(lastDuration - (moment().unix()*1000 - lastBuild.timestamp)));
 
-                                if (job.progress > 0.95) {
-                                    job.progress = 0.95;
+                                if (job.progress > 1) {
+                                    job.progress = 1;
                                 }
                             }
                     }
@@ -108,17 +95,6 @@ function getJobs() {
                     job.timestamp = lastBuild.timestamp;
                     job.number = lastBuild.number;
                 }
-
-                job.prettyName = job.name
-                    .replace(/live-/g, '')
-                    .replace(/project/g, '')
-                    .replace(/training-/g, 'train ')
-                    .replace(/lightweight/g, 'lw')
-                    .replace(/-/g, ' ')
-                    .replace(/cron/g, '')
-                    .replace(/calculate/g, 'calc')
-                    .replace(/Product/g, 'Prod')
-                    .replace(/  /g, '');
 
                 jobs.push(job);
             });

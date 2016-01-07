@@ -13,8 +13,12 @@ app.controller('boardController', ['$socket', function($socket) {
     $socket.on('reload', function() {
         location.reload();
     });
-
-    $socket.emit('view-req', 'live');
+    
+    if (Math.random() > 0.5) {
+        $socket.emit('view-req', 'live');        
+    } else {
+        $socket.emit('view-req', 'project');
+    }
 
     $socket.on('view-res', function(data) {
         that.view = data;
@@ -27,15 +31,18 @@ app.controller('boardController', ['$socket', function($socket) {
         data.forEach(function(element) {
             switch (element.status) {
                 case 'success':
-                    element.colour = 'green';
+                    element.colour = 'green darken-4';
                     break;
                 case 'failed':
-                    element.colour = 'red';
+                    element.colour = 'red darken-4';
+                    break;
+                case 'aborted':
+                    element.colour = 'grey darken-4';
                     break;
                 case 'building':
                     switch (element.pastStatus) {
                         case 'success':
-                            element.colour = 'green';
+                        element.colour = 'green darken-3';
                             break;
                         case 'failed':
                             element.colour = 'red';
@@ -50,8 +57,13 @@ app.controller('boardController', ['$socket', function($socket) {
             that.allJobs[element.name] = element;
         });
 
-        that.view.jobs.forEach(function(name){
-            that.jobs.push(that.allJobs[name]);
+        that.view.jobs.forEach(function(jobDef){
+            var job = that.allJobs[jobDef.name];
+
+            job.displayName = jobDef.displayName;
+            job.width = jobDef.width;
+
+            that.jobs.push(job);
         });
     });
 }]);
