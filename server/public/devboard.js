@@ -37,7 +37,7 @@ app.controller('boardController', ['$socket', function($socket) {
                     element.colour = 'red darken-4';
                     break;
                 case 'aborted':
-                    element.colour = 'grey darken-4';
+                    element.colour = 'grey darken-2';
                     break;
                 case 'building':
                     switch (element.pastStatus) {
